@@ -1,0 +1,802 @@
+<!-- Original script created by Tal Boger, April 2021 -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div id="preInstructions">
+  <p id="title"><strong>Shapes and quadrants</strong></p>
+  <div id="progressInstructions">
+    <p style="text-align:center"><strong>Press the right arrow key after each slide to go through the instructions!</strong></p>
+  </div>
+  <div class="container" id="container_instructions" style="position: absolute; left: 50%; top: 75px;  transform: translate(-50%, 75px);">
+    <div class="hoverzoom">
+      <img src="instructions_webp/Slide1.webp" id="instructions-image" width=960 height=540>
+    </div>
+  </div>
+</div>
+
+<div id="experiment">
+  <p id="title"><strong>Shapes and quadrants</strong></p>
+  <p id="browserCompat"><strong>Unfortunately, this study does not work in your current browser. Please use Chrome, Firefox, or Safari. Sorry!</strong></p>
+  <br>
+ 	<div id="progressContainer">
+    <div class="progress" id="progressText">Study Progress</div>
+      <div class="progress" id="progressOutline">
+      <div class="progress" id="progressBar"></div>
+    </div>
+  </div>
+  <div id="imageInstructions">
+    <p style="text-align:center">Try to count whether <strong>"x"-shaped points</strong> create a <strong>forward-slash (/)</strong> more often than they create <strong>a back-slash (\)</strong>!</p>
+    <p style="text-align:center">Press the "enter" key to begin.</p>
+  </div>
+  <div id="responseInstructions">
+    <p style="text-align:center">If there are more plots where the "x"s form a <strong>\</strong>, press <strong>"q"</strong>.</p>
+    <p style="text-align:center">If there are more plots where the "x"s form a <strong>/</strong>, press <strong>"p"</strong>.</p>
+  </div>
+  <div class="container" id="container_image" style="position: absolute; left: 50%; top: 125px;  transform: translate(-50%, 125px);">
+    <img id="imageRef" height=400 width=400></img>
+  </div>
+</div>
+
+<div id="questionText">
+  <strong>If you had to guess, what do you think was the purpose of this study?</strong>
+  <br>
+  <br>
+  <textarea id="questionBox" rows=4 cols=40 placeholder="Enter your guess here..."></textarea>
+	<input type="hidden" id="questionGuess" name="questionGuess">
+  <br>
+  <br>
+  <br>
+  <a href='javascript:showIB1()' id='showInitIB' class='button'>Next</a>
+</div>
+
+<div id="ib_part1">
+  <div id ="ibQuestions" style="max-width:80%;margin:10 auto">
+    <strong>You must answer the following yes or no questions before completing the experiment.</strong>
+    <br>
+    <br>
+    <p style="text-align:center">To help you remember what the shapes and patterns look like, we have left an example forward-slash (/) image below.</p>
+    <img id="forwardSlash" height=400 width=400 src="no_dinos/q1_3_xs/0001.png"></img>
+    <br>
+    <br>
+    <p style="text-align:center">In any part of this task, did you notice shapes or figures created by <strong>the blue "x"s</strong>, that were different from the display above, and unlike anything shown in the instructions?</p>
+    <input type="radio" name="yes_no_bluex" value="yes" onclick = "checkAnswersIB1()" style="display: inline-block;vertical-align: baseline;"> Yes</input>
+    &nbsp; &nbsp;
+    <input type="radio" name="yes_no_bluex" value="no" onclick = "checkAnswersIB1()" style="display: inline-block;vertical-align: baseline;"> No</input>
+    <br>
+    <br>
+    <br>
+    <p style="text-align:center">In any part of this task, did you notice shapes or figures created by <strong>the blue circles</strong>, that were different from the display above, and unlike anything shown in the instructions?</p>
+    <input type="radio" name="yes_no_bluecircle" value="yes" onclick = "checkAnswersIB1()" style="display: inline-block;vertical-align: baseline;"> Yes</input>
+    &nbsp; &nbsp;
+    <input type="radio" name="yes_no_bluecircle" value="no" onclick = "checkAnswersIB1()" style="display: inline-block;vertical-align: baseline;"> No</input>
+    <br>
+    <br>
+    <br>
+    <p style="text-align:center">In any part of this task, did you notice shapes or figures created by <strong>the green circles</strong>, that were different from the display above, and unlike anything shown in the instructions?</p>
+    <input type="radio" name="yes_no_greencircle" value="yes" onclick = "checkAnswersIB1()" style="display: inline-block;vertical-align: baseline;"> Yes</input>
+    &nbsp; &nbsp;
+    <input type="radio" name="yes_no_greencircle" value="no" onclick = "checkAnswersIB1()" style="display: inline-block;vertical-align: baseline;"> No</input>
+  </div>
+
+  <a href='javascript:showIB2()' id='showDinoIB' class='button'>Next</a>
+</div>
+
+<div id="ib_part2">
+  <div id ="ibQuestions" style="max-width:80%;margin:10 auto">
+    <strong>You must answer the following yes or no questions before completing the experiment.</strong>
+    <br>
+    <br>
+    <p style="text-align:center">Did you notice a dinosaur appear in the plots at any point during the sequence, such as the one below?</p>
+    <img id="dinoExample" height=400 width=400 src="dinos/q1_3_xs/0001.png"></img>
+    <br>
+    <br>
+    <input type="radio" name="yes_no_dino" value="yes" onclick = "checkAnswersIB2()" style="display: inline-block;vertical-align: baseline;"> Yes</input>
+    &nbsp; &nbsp;
+    <input type="radio" name="yes_no_dino" value="no" onclick = "checkAnswersIB2()" style="display: inline-block;vertical-align: baseline;"> No</input>
+
+  </div>
+
+  <a href='javascript:showIB3()' id='showGorillaIB' class='button'>Next</a>
+</div>
+
+<div id="ib_part3">
+  <div id ="ibQuestions" style="max-width:80%;margin:10 auto">
+    <strong>You must answer the following yes or no questions before completing the experiment.</strong>
+    <br>
+    <br>
+    <p style="text-align:center">Did you notice a gorilla appear in the plots at any point during the sequence, such as the one below?</p>
+    <img id="gorillaExample" height=400 width=400 src="gorilla_plot.png"></img>
+    <br>
+    <br>
+    <input type="radio" name="yes_no_gorilla" value="yes" onclick = "checkAnswersIB3()" style="display: inline-block;vertical-align: baseline;"> Yes</input>
+    &nbsp; &nbsp;
+    <input type="radio" name="yes_no_gorilla" value="no" onclick = "checkAnswersIB3()" style="display: inline-block;vertical-align: baseline;"> No</input>
+
+  </div>
+
+  <a href='javascript:doneExperiment()' id='finishIB' class='button'>Next</a>
+</div>
+
+<div id="doneText">
+	<strong>Done! You can go ahead and submit the study using the button below after leaving a comment. You will then be redirected to Prolific. Thank you!</strong>
+	<br>
+  <p>The purpose of this experiment was to see whether you'd miss the dinosaur, given a tough visual task.</p>
+  <p>Please enter at least 50 words of comments/advice for us in the box below by answering some or all of the following questions.</p>
+  <p>Were the instructions clear? Were there any technical issues?
+     Did you have any of what we were trying to do? Was the task so tough that it was overwhelming?
+     Did you have trouble seeing the tiny shapes? Any other comments are welcome!</p>
+  <p>Once you write 50 words, a submit button will appear and you can complete the experiment!</p>
+	<textarea id="commentBox" rows=4 cols=40 placeholder="Enter your comments here..."></textarea>
+	<input type="hidden" id="comments" name="comments">
+  <br>
+  <br>
+  <br>
+  <a href='javascript:submitData("data/")' id='finishExperiment' class='button'>Submit results</a>
+  <br>
+  <span id="redirectToProlific">
+    <p>Your browser should automatically redirect you to Prolific's webpage where you will be given a completion code.</p>
+    <p>Redirecting in <span id = countDown><b></b></span> seconds.</p>
+    <p>If you're not automatically redirected in a few seconds, please copy and paste this address on your web browser:
+    <b><span id = urlProlific></span></b></p>
+  </span>
+</div>
+
+<script>
+$(document).ready( function() {
+    introRoutines();
+    showInstructions(25);
+});
+
+// hide all things aside from instructions
+$('#experiment').hide();
+$('#container_image').hide();
+$('#imageInstructions').hide();
+$('#responseInstructions').hide();
+$('#redirectToProlific').hide();
+$('#progressContainer').hide();
+$('.progress').hide();
+$('#ibQuestions').show();
+$('#ib_part1').hide();
+$('#showDinoIB').hide();
+$('#q1').show();
+
+var requestAnimationFrame = window.requestAnimationFrame ||
+                            window.mozRequestAnimationFrame ||
+                            window.webkitRequestAnimationFrame ||
+                            window.msRequestAnimationFrame;
+
+// experiment params
+var experimentName = 'datasaurus';
+var experimentVersion = 'v001';
+
+// timing params
+var stimTime = 2500; // image is up for 2500 ms
+var isiTime = 250; // 250 ms isi
+var itiTime = 1000;
+
+
+// various global vars
+var currentTrialNum;
+var trialCounter;
+var trial;
+var subjectID, studyID, sessionID;
+var responses = {};
+var startHITTime;
+var startExperimentTime;
+var t0_respond;
+var allImages = [];
+
+//screen params
+var containerHeight = 400;
+var containerWidth = 400;
+
+// define blocks
+var nBlocks = 5;
+var nTrialsPerBlock = 7;
+var nTrials = nBlocks;
+
+// get browser params, tell user browser is not compatible if needed
+var browserInfo = getBrowser();
+if (browserInfo['name'] == "msie" || browserInfo['name'] == "Opera") {
+  $('#browserCompat').show();
+} else {
+  $('#browserCompat').hide();
+}
+
+// redirect params
+var urlProlific = "https://app.prolific.co/"; // anonymized completion code
+var finalCountDownClock = 5;
+
+// show a single slide of instructions
+function showInstructionSlide(slideNum) {
+  let imageFilePath = "instructions_webp/Slide".concat(slideNum, ".webp");
+  $("#instructions-image").attr("src", imageFilePath);
+};
+
+// present instruction slides one at a time
+function showInstructions(numInstructionSlides) {
+
+  let currInstructionSlide = 2;
+
+  document.onkeydown = function(e) {
+    if (e.keyCode == 39) {
+      showInstructionSlide(currInstructionSlide);
+      currInstructionSlide++;
+      if(currInstructionSlide > numInstructionSlides) {
+        doneInstructions();
+      }
+    }
+  }
+};
+
+
+function doneInstructions() {
+  $('#preInstructions').hide();
+  $('#experiment').show();
+  StartExperiment();
+}
+
+// start!
+function introRoutines() {
+  [subjectID, studyID, sessionID] = getProlificInfo();
+
+  currentTrialNum = -1;
+
+  // gen trials
+  trials = generateTrials();
+  responses['trialData'] = [];
+
+  $('#container_image').css('width',containerWidth + 'px');
+  $('#container_image').css('height',containerHeight + 'px');
+
+  startHITTime = currentTime();
+
+  preLoadBlock(0);
+
+}
+
+function getProlificInfo() {
+  let urlParams = new URLSearchParams(window.location.search);
+  prolificPID = urlParams.get("PROLIFIC_PID");
+  studyID = urlParams.get("STUDY_ID");
+  sessionID = urlParams.get("SESSION_ID");
+  return [prolificPID, studyID, sessionID]
+}
+
+
+function generateTrials() {
+  trials = [];
+  var [plotTypes, correctAnswers] = genPlotType();
+  var [imageSeq, dinoList] = genImageSeq(plotTypes);
+  for (i = 0; i < nBlocks; i++) {
+    var trial = {};
+    trial.correctAnswer = correctAnswers[i]
+    var currImageSeq = []
+    for (j = 0; j < nTrialsPerBlock; j++) {
+      currImageSeq[j] = imageSeq[i][j];
+    }
+    trial.imageSeq = currImageSeq;
+    trial.dinoPosition = dinoList[i];
+    trials.push(trial);
+  }
+  return trials;
+
+}
+
+function StartExperiment() {
+  startedExperiment = true;
+  startExperimentTime = new Date();
+  $('#progressContainer').show();
+  $('.progress').show();
+
+  loadTrial();
+
+}
+
+function loadTrial() {
+  $('#container_image').show();
+
+  currentTrialNum++;
+
+  if (currentTrialNum < nTrials - 1) {
+    preLoadBlock(currentTrialNum + 1);
+  }
+
+  if (currentTrialNum < nTrials) {
+    trial = trials[currentTrialNum];
+    trial['trialID'] = currentTrialNum;
+    runTrial();
+  } else {
+    showQuestion();
+  }
+
+}
+
+function runTrial() {
+  $('#progressBar').css('width',((currentTrialNum/nTrials)*100) + 'px');
+  $('#imageInstructions').show();
+  $('#imageRef').hide();
+  trialCounter = 0;
+
+  document.onkeydown = function(e) {
+    if(e.keyCode == 13) {
+      showImageSequence();
+    }
+  };
+}
+
+function showImageSequence() {
+  if (trialCounter < nTrialsPerBlock) {
+    $('#imageRef').attr('src', allImages[currentTrialNum][trialCounter].src);
+    $('#container_image').show();
+    $('#imageRef').show();
+    setTimeout(maskIsi, stimTime);
+    trialCounter++;
+  } else {
+    stopSeq();
+  }
+
+}
+
+function maskIsi() {
+
+  $('#container_image').hide();
+
+  setTimeout(showImageSequence, isiTime);
+
+}
+
+function stopSeq() {
+  $('#imageInstructions').hide();
+  $('#responseInstructions').show();
+
+  t0_respond = currentTime();
+
+  var fired = false;
+  document.onkeydown = function(e) {
+    if (!fired) {
+      if (e.keyCode == 80) {
+        fired = true;
+        trial['response'] = "p";
+        respond();
+      } else if (e.keyCode == 81) {
+        fired = true;
+        trial['response'] = "q";
+        respond();
+      }
+    }
+  };
+
+}
+
+
+function respond() {
+  $('#responseInstructions').hide();
+
+  var rt = currentTime() - t0_respond;
+
+  trial['rt'] = Math.round(rt * 10) / 10;
+  trial['subjectID'] = subjectID;
+  responses['trialData'].push(trial);
+
+  setTimeout(loadTrial, itiTime);
+
+}
+
+function showQuestion() {
+  $('#experiment').hide();
+  $('#questionText').show();
+  $('#questionBox').show();
+
+}
+
+function showIB1() {
+  $('#ib_part1').show();
+
+  $('#questionText').hide();
+  $('#questionBox').hide();
+
+  $('#showDinoIB').hide();
+}
+
+function showIB2() {
+  $('#ib_part1').hide();
+  $('#ib_part2').show();
+  $('#showGorillaIB').hide();
+}
+
+function showIB3() {
+  $('#ib_part2').hide();
+  $('#ib_part3').show();
+  $('#finishIB').hide();
+}
+
+function checkAnswersIB1(){
+  if($('input[type=radio]:checked').length == 3) {
+    $('#showDinoIB').show();
+  }
+}
+
+function checkAnswersIB2(){
+  if($('input[type=radio]:checked').length == 4) {
+    $('#showGorillaIB').show();
+  }
+}
+
+function checkAnswersIB3() {
+  if($('input[type=radio]:checked').length == 5) {
+    $('#finishIB').show();
+  }
+}
+
+function doneExperiment() {
+  $('#ib_part3').hide();
+	$('#doneText').show();
+	$('#commentBox').show();
+  $('#finishExperiment').hide();
+
+  document.getElementById('commentBox').addEventListener('input', function() {
+    var text = this.value,
+    count = text.trim().split(' ').length;
+
+    if (count >= 50) {
+        $('#finishExperiment').show();
+    }
+  });
+
+  assignExperimentInfo();
+
+}
+
+function assignExperimentInfo() {
+  responses['experimentName'] = experimentName;
+  responses['experimentVersion'] = experimentVersion;
+  responses['experimentTime'] = Math.round((currentTime() - startHITTime) * 10) / 10;
+
+  responses['studyID'] = studyID;
+  responses['sessionID'] = sessionID;
+
+  responses['browserName'] = browserInfo['name'];
+  responses['browserVersion'] = browserInfo['version'];
+
+  responses['displayWindowHeight'] = $(window).height();
+  responses['displayWindowWidth'] = $(window).width();
+  responses['displayScreenHeight'] = screen.height;
+  responses['displayScreenWidth'] = screen.width;
+
+  responses['noticed_blue_xs'] = document.querySelector('input[name="yes_no_bluex"]:checked').value;
+  responses['noticed_blue_circles'] = document.querySelector('input[name="yes_no_bluecircle"]:checked').value;
+  responses['noticed_green_circles'] = document.querySelector('input[name="yes_no_greencircle"]:checked').value;
+  responses['noticed_dino'] = document.querySelector('input[name="yes_no_dino"]:checked').value;
+  responses['noticed_gorilla'] = document.querySelector('input[name="yes_no_gorilla"]:checked').value;
+
+
+}
+
+function submitData(outDir) {
+  responses['purposeGuess'] = document.getElementById('questionBox').value;
+  responses['commentText'] = document.getElementById('commentBox').value;
+  responses['totalTime'] = Math.round((currentTime() - startHITTime) * 10) / 10;
+  // get data string from response array
+  var dataString = JSON.stringify(responses);
+
+  // post response to server
+  // commented out for demo page
+
+  // $.post("logTrial.py",
+  //       {dataString : dataString, subjectID: subjectID});
+
+
+  $('#redirectToProlific').show();
+  $('#urlProlific').text(urlProlific);
+  $('#countDown').text((finalCountDownClock).toString());
+  redirectTimer = setInterval(countDown, 1000);
+}
+
+function currentTime() {
+  return performance.now();
+
+}
+
+// pads numbers with leading 0s for filenames
+function pad(n) {
+  n = n + '';
+  return n.length >= 4 ? n : new Array(4 - n.length + 1).join(0) + n;
+
+}
+
+function getBrowser() {
+  var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+  if(/trident/i.test(M[1])) {
+    tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
+    return {name:'IE',version:(tem[1]||'')};
+    }
+  if(M[1]==='Chrome') {
+    tem=ua.match(/\bOPR|Edge\/(\d+)/)
+    if(tem!=null) {
+      return {name:'Opera', version:tem[1]};
+      }
+    }
+  M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+  if((tem=ua.match(/version\/(\d+)/i))!=null) {
+    M.splice(1,1,tem[1]);
+  }
+  return {
+    name: M[0],
+    version: M[1]
+  };
+
+}
+
+// randomly shuffle elements of array
+function shuffle(array) {
+  return array.sort(() => Math.random() - 0.5);
+
+}
+
+// generate number of "true" examples
+function genPlotType() {
+  var blocks = []
+  var correctAnswer = []
+  // plotType 1 = xs in q1 and q3
+  // plotType 2 = xs in q2 and q4
+  // plotType 3 = xs in one quad, circless in the 3 others
+  // plotType 4 = xs in one quad, circless in the 3 others
+  for (i = 0; i < nBlocks; i++) {
+    if (Math.random() < 0.5) {
+        var plotTypes = [1, 1, 1, 2, 2, 3, 4];
+        blocks.push(shuffle(plotTypes));
+        correctAnswer.push("p");
+    } else {
+        var plotTypes = [1, 1, 2, 2, 2, 3, 4];
+        blocks.push(shuffle(plotTypes));
+        correctAnswer.push("q");
+    }
+  }
+
+  return [blocks, correctAnswer];
+}
+
+// generate image files according to answers
+function genImageSeq(plotTypes) {
+  var imageSeq = [];
+  var dinoList = [];
+  for (var nonDinoNums=[],i=1;i<=48;++i) nonDinoNums[i]=i;
+  for (var dinoNums=[],i=1;i<=24;++i) dinoNums[i]=i;
+  shuffle(nonDinoNums);
+  shuffle(dinoNums);
+
+  var startPos = 0;
+  for (i = 0; i < nBlocks; i++) {
+    var currBlockSeq = []
+    if (i == nBlocks - 1 || i == nBlocks - 3) {
+        var dinoPosition = getRandomInt(3, 5);
+    } else {
+        var dinoPosition = -1;
+    }
+    dinoList.push(dinoPosition);
+    var nonDinoSlice = nonDinoNums.slice(startPos, nonDinoNums.length);
+    for (j = 0; j < nTrialsPerBlock; j++) {
+      if (dinoPosition == j) {
+        if (plotTypes[i][j] == 1) {
+          currBlockSeq.push('dinos/q1_3_xs/' + pad(dinoNums[i]) + '.png');
+        } else if (plotTypes[i][j] == 2) {
+          currBlockSeq.push('dinos/q2_4_xs/' + pad(dinoNums[i]) + '.png');
+        } else if (plotTypes[i][j] == 3) {
+          currBlockSeq.push('dinos/one_x/' + pad(dinoNums[i]) + '.png');
+        } else if (plotTypes[i][j] == 4) {
+          currBlockSeq.push('dinos/three_x/' + pad(dinoNums[i]) + '.png');
+        }
+      } else {
+        if (plotTypes[i][j] == 1) {
+          currBlockSeq.push('no_dinos/q1_3_xs/' + pad(nonDinoSlice[j]) + '.png');
+        } else if (plotTypes[i][j] == 2) {
+          currBlockSeq.push('no_dinos/q2_4_xs/' + pad(nonDinoSlice[j]) + '.png');
+        } else if (plotTypes[i][j] == 3) {
+          currBlockSeq.push('no_dinos/one_x/' + pad(nonDinoSlice[j]) + '.png');
+        } else if (plotTypes[i][j] == 4) {
+          currBlockSeq.push('no_dinos/three_x/' + pad(nonDinoSlice[j]) + '.png');
+        }
+      }
+    }
+    startPos += nTrialsPerBlock;
+    imageSeq.push(currBlockSeq);
+  }
+  return [imageSeq, dinoList];
+}
+
+function preLoadBlock(block_num) {
+    var seqToLoad = trials[block_num]['imageSeq'];
+    var loadedSeq = []
+    for (var i = 0; i < seqToLoad.length; i++) {
+        var img = new Image();
+        img.src = seqToLoad[i];
+        loadedSeq.push(img);
+    }
+    allImages.push(loadedSeq);
+}
+
+function countDown () {
+  finalCountDownClock--;
+  if (finalCountDownClock == 0) {
+    clearInterval(redirectTimer);
+    window.location = urlProlific;
+  } else {
+    $('#countDown').text((finalCountDownClock).toString());
+  }
+}
+
+// get random integer
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+</script>
+
+<style>
+body {
+  font-family: Helvetica,Arial;
+  font-size: 14pt;
+  height: 100%;
+  margin: 10 auto;
+}
+
+#imageInstructions, #progressInstructions, #responseInstructions {
+	display:block;
+	max-width: 80%;
+	margin: 0 auto;
+	margin-top: 0px;
+  text-align: left;
+  margin-bottom: -1.2em;
+}
+
+#title, #browserCompat {
+  font-size: 18pt;
+  text-align: center;
+  margin: 0 auto;
+}
+canvas {
+  border: 1px solid black;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+input {
+  position: relative;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#startExperiment, #showDinoIB, #showInitIB, #showGorillaIB, #finishIB, #finishExperiment {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+	color: black;
+	font-size:14pt;
+	border: 3px outset gray;
+	background-color: #4CAF50;
+	padding: 0px;
+	text-decoration: none;
+	font-weight: bold;
+  position: relative;
+  width: 150px;
+	margin-top:0px;
+	margin-bottom:0px;
+  border-radius: 8px;
+  transition-duration: 0.4s;
+}
+
+#startExperiment:hover, #showDinoIB:hover, #showInitIB:hover, #showGorillaIB:hover, #finishIB:hover, #finishExperiment:hover {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+#startExperiment:active, #showDinoIB:active, #showInitIB:active, #showGorillaIB:active, #finishIB:active, #finishExperiment:active {
+	background: gray;
+}
+
+.progress {
+  text-align: center;
+  display: none;
+  height: 15px;
+}
+
+#progressContainer {
+  text-align: center;
+  display: none;
+}
+
+#progressText {
+  font-size: 14pt;
+  color: black;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#progressOutline {
+  display: inline-block;
+  background: white;
+  border: 3px solid black;
+  width: 100px;
+  margin: 5 auto;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+#progressBar {
+  background: #4CAF50;
+  width: 0px;
+  margin-bottom: 10px;
+}
+
+.container {
+  margin: auto;
+}
+
+#container_image {
+  position: absolute;
+  left: 50%;
+  top: 150px;
+  transform: translate(-50%, 150px);
+  margin: auto;
+  color: black;
+  background-color: black;
+  text-align: center;
+}
+
+#questionText, #ib_part1, #ib_part2, #ib_part3 {
+	display:none;
+	max-width: 500px;
+	text-align:center;
+	margin: 10 auto;
+	padding-bottom:10px;
+	font-size:14pt
+}
+
+#doneText {
+	display:none;
+	max-width: 500px;
+	text-align:left;
+	margin: 10 auto;
+	padding-bottom:10px;
+	font-size:14pt
+}
+
+#doneText p, #questiontext p {
+	font-size:12pt
+}
+
+.doneTextStyle, .questionTextStyle {
+  display: none;
+}
+
+#commentBox, #questionBox {
+	display:none;
+}
+
+.hoverzoom {
+    width: 100%;
+    height: 100%;
+}
+
+.hoverzoom img {
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+    -moz-transition: all 1s ease; /* Firefox */
+    -ms-transition: all 1s ease; /* IE 9 */
+    -o-transition: all 1s ease; /* Opera */
+    transition: all 1s ease;
+}
+
+.hoverzoom:hover img {
+    -webkit-transform:scale(1.25); /* Safari and Chrome */
+    -moz-transform:scale(1.25); /* Firefox */
+    -ms-transform:scale(1.25); /* IE 9 */
+    -o-transform:scale(1.25); /* Opera */
+     transform:scale(1.25);
+}
+
+</style>
